@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">RssReader</string>
+    <string name="action_settings">Settings</string>
+    <string name="otsake">Otsake</string>
+    <string name="pvm">pvm</string>
+    <string name="sisalto">Sisalto</string>
+    <string name="title">title</string>
+    <string name="julkaisija">Julkaisija</string>
+    <string name="julkaisup_iv_m_r">Julkaisupäivämäärä</string>
+</resources>
