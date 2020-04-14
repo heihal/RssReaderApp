@@ -26,6 +26,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
+        app:backgroundTint="#D81B60"
         app:srcCompat="@drawable/refresh_24px_svg" />
 
 </RelativeLayout>

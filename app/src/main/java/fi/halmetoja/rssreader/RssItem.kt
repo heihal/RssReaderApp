@@ -1,4 +1,4 @@
-package fi.halmetoja.rssreader.remote
+package fi.halmetoja.rssreader
 
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -26,9 +26,7 @@ class RssItem : Comparable<RssItem> {
     private fun getPubTime(): Date? {
         return this.pubDateForArray
     }
-    private fun getPubTimeTmp(): Int {
-        return this.tmptmp
-    }
+
     private fun setPubDate(date:Date){
         this.pubDateForArray = date
     }
@@ -39,8 +37,7 @@ class RssItem : Comparable<RssItem> {
         return if(this.pubDateForArray!!.after(compDate)){
             1
         } else -1}
-       /* val compDate:Int= item.getPubTimeTmp()
-        return this.tmptmp-compDate*/
+
 
     return 0
 
@@ -56,7 +53,7 @@ class RssItem : Comparable<RssItem> {
 
             val sdf = SimpleDateFormat("yyyyMMdd")
            val tmp = SimpleDateFormat("HHmm")
-           tmptmp =Integer.parseInt(tmp.format(date))
+
             val local = Calendar.getInstance().time
             val ekaInt=   Integer.parseInt(sdf.format(local))
             val tokaInt = Integer.parseInt(sdf.format(date))

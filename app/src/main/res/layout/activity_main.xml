@@ -28,7 +28,6 @@
             app:defaultNavHost="true" />-->
 
         <LinearLayout
-            android:layout_below="@+id/toolbar"
             android:id="@+id/fragment_root"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -44,7 +43,8 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/nav_header"
-            app:menu="@layout/nav_menu"/>
+            app:menu="@layout/nav_menu"
+            android:background="#333333"/>
 
     </androidx.drawerlayout.widget.DrawerLayout>
 

@@ -12,7 +12,6 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import fi.halmetoja.rssreader.remote.RssItem
 
 
 class ViewAdapter (
@@ -68,7 +67,7 @@ class ViewAdapter (
 
 
 
-        fun openWebView(view : View, item :RssItem){
+        fun openWebView(view : View, item : RssItem){
         val articleView = WebView(itemView.context)
 
         articleView.settings.loadWithOverviewMode = true

@@ -1,4 +1,4 @@
-package fi.halmetoja.rssreader.remote
+package fi.halmetoja.rssreader
 
 import org.xmlpull.v1.XmlPullParser
 import org.xmlpull.v1.XmlPullParserException
@@ -9,7 +9,7 @@ import java.io.InputStream
 
 class RssParser {
     private val rssItems = ArrayList<RssItem>()
-    private var rssItem : RssItem ?= null
+    private var rssItem : RssItem?= null
     private var text: String? = null
 
     fun parse(inputStream: InputStream):ArrayList<RssItem> {
@@ -63,7 +63,7 @@ class RssParser {
                     } else if (foundItem && tagname.equals("enclosure", ignoreCase = true)) {
                         rssItem!!.enclosure = parser.getAttributeValue(null, "url");
 
-                    }  else if (tagname.equals("content:encoded", ignoreCase = true)) {
+                    }  /*else if (tagname.equals("content:encoded", ignoreCase = true)) {
 
                         /* TODO kaappaa content ja siirrä se toisessa threadissä RSSitemiin
                         *  saa CDATAn ja kääntää sen html:ksi, mutta aiheuttaa valkosen näytön
@@ -80,7 +80,7 @@ class RssParser {
 
                    rssItem!!.content = doc.toString()*/
 
-                }
+                }  */
                 }
                 eventType = parser.next()
             }

@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-import fi.halmetoja.rssreader.remote.*
 import java.io.IOException
 import java.io.InputStream
 import java.lang.ref.WeakReference
@@ -18,12 +17,13 @@ import javax.net.ssl.HttpsURLConnection
 
 
 class RSSFragment : Fragment() {
-    private val RSSFeedLinks =
-        arrayListOf<String>(
+    private val rssFeedLinks by lazy {
+        arrayListOf(
             "https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET",
             "https://www.hs.fi/rss/tuoreimmat.xml",
         "https://www.iltalehti.fi/rss/rss.xml"
         )
+    }
     private var adapter: ViewAdapter? = null
     private var rssItemsAll: MutableList<RssItem> = mutableListOf<RssItem>()
     private lateinit var myView :View
@@ -55,7 +55,7 @@ class RSSFragment : Fragment() {
     }
 
     fun reloadRSS(){
-        for(x in RSSFeedLinks) {
+        for(x in rssFeedLinks) {
             RssFeedFetcher(this).execute(URL(x))
         }
 
@@ -75,7 +75,7 @@ class RSSFragment : Fragment() {
 
     class RssFeedFetcher(val context: RSSFragment) : AsyncTask<URL, Void, List<RssItem>>() {
         val reference = WeakReference(context)
-        private var stream: InputStream? = null;
+        private var stream: InputStream? = null
         override fun doInBackground(vararg params: URL?): List<RssItem>? {
             val connect = params[0]?.openConnection() as HttpsURLConnection
             connect.readTimeout = 8000
@@ -83,10 +83,10 @@ class RSSFragment : Fragment() {
             connect.requestMethod = "GET"
             connect.connect();
 
-            val responseCode: Int = connect.responseCode;
+            val responseCode: Int = connect.responseCode
             var rssItems: List<RssItem>? = null
             if (responseCode == 200) {
-                stream = connect.inputStream;
+                stream = connect.inputStream
 
 
                 try { onPostExecute(RssParser().parse(stream!!)) }
