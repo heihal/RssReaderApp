@@ -1,64 +1,87 @@
 package fi.halmetoja.rssreader
 
+import android.annotation.SuppressLint
 import java.text.ParseException
 import java.text.SimpleDateFormat
 import java.util.*
 
-
+/**
+ * RSS feed item object model
+ * Commented out parts of could be implemented later
+ *
+ */
 
 class RssItem : Comparable<RssItem> {
-    var enclosure= ""
+    var enclosure = ""
     var title = ""
     var link = ""
     //var guid = ""
-   // var author = ""
+    //var author = ""
     //var thumbnail = ""
     var pubDate = ""
     var description = ""
     var category = ""
-   var content = ""
-    var channel= ""
-    var pubDateForArray: Date? = null
-    var tmpDate=""
-    var tmptmp:Int=0
+    private var content = ""
+    var channel = ""
+    private var pubDateForArray: Date? = null
+    var tmpDate = ""
+    var tmptmp: Int = 0
 
-
+    /**
+     * Get pub date
+     *
+     * @return Date object of Rss item
+     */
     private fun getPubTime(): Date? {
         return this.pubDateForArray
     }
 
-    private fun setPubDate(date:Date){
+    /**
+     * Set pub date
+     *
+     * @param date Type of Date object
+     */
+
+    private fun setPubDate(date: Date) {
         this.pubDateForArray = date
     }
 
+    /**
+     * TODO doesn't work like it suppose to
+     * overrides compareTo in Comparable Interface
+     * @param item Compares item's pub date to another item
+     * @return integer to use in sort function
+     */
+
     override fun compareTo(item: RssItem): Int {
         val compDate: Date? = item.getPubTime()
-        if( this.pubDateForArray!=null){
-        return if(this.pubDateForArray!!.after(compDate)){
-            1
-        } else -1}
-
-
-    return 0
+        if (this.pubDateForArray != null) {
+            return if (this.pubDateForArray!!.after(compDate)) {
+                1
+            } else -1
+        }
+        return 0
 
     }
 
-    fun formatPubDate(){
+    /**
+     * Formatting RSS pub date and setting it to Rss item's text field
+     *
+     */
+
+    @SuppressLint("SimpleDateFormat")
+    fun formatPubDate() {
         val pubDateString = try {
             val sDString = this.pubDate
-            //Fri, 10 Apr 2020 10:00:00 +0300
             val sourceSdf = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
             val date = sourceSdf.parse(sDString)
             setPubDate(date)
-
             val sdf = SimpleDateFormat("yyyyMMdd")
-           val tmp = SimpleDateFormat("HHmm")
-
             val local = Calendar.getInstance().time
-            val ekaInt=   Integer.parseInt(sdf.format(local))
+            val ekaInt = Integer.parseInt(sdf.format(local))
             val tokaInt = Integer.parseInt(sdf.format(date))
 
-            tokaInt-ekaInt
+            tokaInt - ekaInt
 
         } catch (e: ParseException) {
             e.printStackTrace()
@@ -66,7 +89,6 @@ class RssItem : Comparable<RssItem> {
         }
         val kello = try {
             val sourceDateString = this.pubDate
-            //Fri, 10 Apr 2020 10:00:00 +0300
             val sourceSdf = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
             val date = sourceSdf.parse(sourceDateString)
 
@@ -78,11 +100,19 @@ class RssItem : Comparable<RssItem> {
             e.printStackTrace()
 
         }
-        if (pubDateString == 0){
+        if (pubDateString == 0) {
             this.tmpDate = "Tänään $kello"
-        } else{this.tmpDate = "eilen $kello"}
+        } else {
+            this.tmpDate = "eilen $kello"
+        }
 
     }
+
+    /**
+     *
+     *
+     * @return RSS item properties as a string
+     */
 
 
     override fun toString(): String {

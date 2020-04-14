@@ -14,9 +14,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 
-class ViewAdapter (
-    private val mValues: List<RssItem>,
-    private val context : FragmentActivity?
+class ViewAdapter(
+    private val rssItems: MutableList<RssItem> = mutableListOf(),
+    private val context: FragmentActivity?
 
 
 ) : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
@@ -28,67 +28,80 @@ class ViewAdapter (
         return ViewHolder(view)
     }
 
+    /**
+     * uses ViewHolder's bind method
+     * @see ViewHolder.bind
+     *
+     * @param holder ViewHolder
+     * @param position RSS item's position in Array
+     */
 
-    override fun onBindViewHolder(holder: ViewHolder, position: Int)  = holder.bind(mValues[position])
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) =
+        holder.bind(rssItems[position])
 
-    override fun getItemCount(): Int = mValues.size
+    /**
+     *
+     * @return RSS Items size
+     */
+    override fun getItemCount(): Int = rssItems.size
 
-    inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
-        val titleTV: TextView? = mView.findViewById(R.id.otsake)
-        val pubDateTV: TextView? = mView.findViewById(R.id.pvm)
-        val channelTV: TextView? = mView.findViewById(R.id.lehti)
-        val featuredImg: ImageView = mView.findViewById(R.id.featuredImg);
-
+    inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
+        private val title: TextView? = view.findViewById(R.id.otsake)
+        private val pubDate: TextView? = view.findViewById(R.id.pvm)
+        private val channel: TextView? = view.findViewById(R.id.lehti)
+        private val img: ImageView = view.findViewById(R.id.kuva)
 
 
         fun bind(item: RssItem) {
 
-            titleTV?.text = item.title
-            channelTV?.text= item.channel
+            title?.text = item.title
+            channel?.text = item.channel
             item.formatPubDate()
-            pubDateTV?.text = item.tmpDate
+            pubDate?.text = item.tmpDate
+            val imgLink = item.enclosure
 
-            var imgLink = item.enclosure
-
-            if(imgLink != null) {
-                context?.let {
-                    Glide.with(it)
-                        .load(imgLink)
-                        .into(featuredImg)
-                }
+            context?.let {
+                Glide.with(it)
+                    .load(imgLink)
+                    .into(img)
             }
 
-            mView.setOnClickListener(View.OnClickListener {
-                openWebView(mView,item)
-
-            })
+            view.setOnClickListener {
+                openWebView(item)
+            }
 
         }
 
+        /**
+         * Opens RSS item's link in webview
+         *
+         *
+         * @param item Clicked RSS item
+         */
 
+        private fun openWebView(item: RssItem) {
+            val articleView = WebView(itemView.context)
 
-        fun openWebView(view : View, item : RssItem){
-        val articleView = WebView(itemView.context)
+            articleView.settings.loadWithOverviewMode = true
 
-        articleView.settings.loadWithOverviewMode = true
+            articleView.settings.javaScriptEnabled = true
+            articleView.isHorizontalScrollBarEnabled = false
+            articleView.webChromeClient = WebChromeClient()
+            articleView.loadUrl(item.link)
 
-        articleView.settings.javaScriptEnabled = true
-        articleView.isHorizontalScrollBarEnabled = false
-        articleView.webChromeClient = WebChromeClient()
-        articleView.loadUrl(item.link)
+            val alertDialog = androidx.appcompat.app.AlertDialog.Builder(itemView.context).create()
+            alertDialog.setTitle(item.title)
+            alertDialog.setView(articleView)
+            alertDialog.setButton(
+                androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "CLOSE"
+            ) { dialog, _ -> dialog.dismiss() }
+            alertDialog.show()
 
-        val alertDialog = androidx.appcompat.app.AlertDialog.Builder(itemView.context).create()
-        alertDialog.setTitle(item.title)
-        alertDialog.setView(articleView)
-        alertDialog.setButton(androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "OK"
-        ) { dialog, _ -> dialog.dismiss() }
-        alertDialog.show()
+            (alertDialog.findViewById<View>(android.R.id.message) as TextView).movementMethod =
+                LinkMovementMethod.getInstance()
+        }
 
-        (alertDialog.findViewById<View>(android.R.id.message) as TextView).movementMethod = LinkMovementMethod.getInstance()
     }
-
-    }
-
 
 
 }

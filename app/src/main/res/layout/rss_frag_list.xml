@@ -9,10 +9,8 @@
     tools:context=".RSSFragment"
     tools:visibility="invisible">
 
-    <androidx.recyclerview.widget.RecyclerView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/listV"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/listView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layoutManager="LinearLayoutManager"
@@ -26,8 +24,10 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:clickable="true"
+        android:focusable="true"
         app:backgroundTint="#D81B60"
-        app:srcCompat="@drawable/refresh_24px_svg" />
+        app:srcCompat="@drawable/refresh_24px_svg"
+        android:layout_alignParentEnd="true" />
 
 </RelativeLayout>
 

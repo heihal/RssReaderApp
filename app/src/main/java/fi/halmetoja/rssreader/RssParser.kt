@@ -21,7 +21,7 @@ class RssParser {
             var eventType = parser.eventType
             var foundItem = false
             var otsake = false
-            var otsakeString : String = ""
+            var otsakeString = ""
 
 
 
@@ -61,7 +61,7 @@ class RssParser {
                     } else if (foundItem && tagname.equals("description", ignoreCase = true)) {
                         rssItem!!.description = text.toString()
                     } else if (foundItem && tagname.equals("enclosure", ignoreCase = true)) {
-                        rssItem!!.enclosure = parser.getAttributeValue(null, "url");
+                        rssItem!!.enclosure = parser.getAttributeValue(null, "url")
 
                     }  /*else if (tagname.equals("content:encoded", ignoreCase = true)) {
 

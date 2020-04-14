@@ -6,14 +6,13 @@
     android:background="#D81B60"
     android:gravity="bottom"
     android:orientation="vertical"
-    android:paddingLeft="15dp"
     android:paddingBottom="15dp">
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="match_parent"
         android:layout_height="118dp"
         android:baselineAlignBottom="false"
+        android:contentDescription="@string/nav_header_image"
         app:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <TextView

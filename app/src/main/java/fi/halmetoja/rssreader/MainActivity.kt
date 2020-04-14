@@ -11,6 +11,17 @@ import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
 
+/**
+ *  @author hemhal
+ *  Course exercise RSS feed reader
+ * TODO Dagger2 injection, Retrofit HTTP, ..
+ *
+ *
+ *
+ *
+ *
+ *
+ */
 
 class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -32,16 +43,23 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
 
     }
 
+    /**
+     *  Logic in nav menu
+     *
+     * @param item nav menu item
+     * @return boolean
+     */
+
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_links -> {
-                Toast.makeText(getApplicationContext(), "Publication", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_categories -> {
-                Toast.makeText(getApplicationContext(), "Android Store", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_about -> {
-                Toast.makeText(getApplicationContext(), "Android Store", Toast.LENGTH_SHORT).show()
+                Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_quit -> {
                 finish()
