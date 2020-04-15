@@ -1,27 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="match_parent"
-    android:layout_width="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <group>
         <item
             android:id="@+id/nav_links"
-            android:title="@string/rss_feed_links"/>
+            android:title="@string/rss_feed_links" />
         <item
             android:id="@+id/nav_categories"
-            android:title="@string/rss_categories"/>
+            android:title="@string/rss_categories" />
 
     </group>
 
 
-    <item android:title="@string/other_settings">
+    <item
+        android:title="@string/other_settings">
         <menu>
             <item
                 android:id="@+id/nav_about"
-                android:title="@string/about"/>
+                android:title="@string/about" />
             <item
                 android:id="@+id/nav_quit"
-                android:title="@string/quit"/>
+                android:title="@string/quit"
+               />
         </menu>
     </item>
 </menu>

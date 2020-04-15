@@ -25,7 +25,7 @@ class RssItem : Comparable<RssItem> {
     var channel = ""
     private var pubDateForArray: Date? = null
     var tmpDate = ""
-    var tmptmp: Int = 0
+
 
     /**
      * Get pub date
@@ -47,7 +47,7 @@ class RssItem : Comparable<RssItem> {
     }
 
     /**
-     * TODO doesn't work like it suppose to
+     * TODO doesn't work like it suppose to (compDate is null most of the time)
      * overrides compareTo in Comparable Interface
      * @param item Compares item's pub date to another item
      * @return integer to use in sort function
@@ -57,8 +57,8 @@ class RssItem : Comparable<RssItem> {
         val compDate: Date? = item.getPubTime()
         if (this.pubDateForArray != null) {
             return if (this.pubDateForArray!!.after(compDate)) {
-                1
-            } else -1
+                -1
+            } else 1
         }
         return 0
 
@@ -71,11 +71,13 @@ class RssItem : Comparable<RssItem> {
 
     @SuppressLint("SimpleDateFormat")
     fun formatPubDate() {
+        var tmp: Date? = null
         val pubDateString = try {
             val sDString = this.pubDate
             val sourceSdf = SimpleDateFormat("EEE, d MMM yyyy HH:mm:ss Z", Locale.ENGLISH)
             val date = sourceSdf.parse(sDString)
-            setPubDate(date)
+
+            tmp = date
             val sdf = SimpleDateFormat("yyyyMMdd")
             val local = Calendar.getInstance().time
             val ekaInt = Integer.parseInt(sdf.format(local))
@@ -100,6 +102,7 @@ class RssItem : Comparable<RssItem> {
             e.printStackTrace()
 
         }
+        this.pubDateForArray= tmp
         if (pubDateString == 0) {
             this.tmpDate = "Tänään $kello"
         } else {
@@ -119,5 +122,7 @@ class RssItem : Comparable<RssItem> {
         return "RssItem(title='$title', link='$link', pubDate='$pubDate', description='$description', categories='$category', enclosure = '$enclosure, content = '$content', channel='$channel')"
     }
 }
+
+
 
 

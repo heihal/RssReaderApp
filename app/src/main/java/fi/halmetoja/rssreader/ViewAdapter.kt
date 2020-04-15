@@ -13,7 +13,13 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
-
+/**
+ * View Adapter for RecyclerView
+ * View Holder is a inner class
+ *
+ * @property rssItems List of RSS items
+ * @property context RSSFragment activity
+ */
 class ViewAdapter(
     private val rssItems: MutableList<RssItem> = mutableListOf(),
     private val context: FragmentActivity?
@@ -21,7 +27,13 @@ class ViewAdapter(
 
 ) : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
 
-
+    /**
+     * Adds RSS item to this view
+     *
+     * @param parent
+     * @param viewType
+     * @return
+     */
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context)
             .inflate(R.layout.rss_frag_row, parent, false)
@@ -44,6 +56,13 @@ class ViewAdapter(
      * @return RSS Items size
      */
     override fun getItemCount(): Int = rssItems.size
+
+    /**
+     * View holder inner class
+     * Gets fields/layouts defined in XML and binds them with RSS item properties
+     * Sets listener for its RSS item (=row)
+     * @property view
+     */
 
     inner class ViewHolder(private val view: View) : RecyclerView.ViewHolder(view) {
         private val title: TextView? = view.findViewById(R.id.otsake)

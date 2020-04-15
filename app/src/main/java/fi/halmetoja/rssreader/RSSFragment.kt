@@ -13,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.URL
 
-
+/**
+ * RSS Item Activity /Fragment
+ *
+ */
 
 class RSSFragment : Fragment() {
     private val rssFeedLinks by lazy {
@@ -28,6 +31,16 @@ class RSSFragment : Fragment() {
     private lateinit var myView: View
     private var listView: RecyclerView? = null
 
+    /**
+     * Inflates rss_flag_list layout with container
+     * Creates floating action button and adds listener to it (reloads RSS feed ann makes a toast about it)
+     * Sets listView as RecyclerView which contains Rss Item Row
+     *
+     * @param inflater
+     * @param container
+     * @param savedInstanceState
+     * @return Rss_frag_list view
+     */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -43,6 +56,11 @@ class RSSFragment : Fragment() {
         return myView
     }
 
+    /**
+     * Sets layout manager and adapter to listView i.e. RecyclerView
+     * Reloads RSS feed
+     * @param savedInstanceState
+     */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         adapter = ViewAdapter(rssItemsAll, activity)
@@ -53,8 +71,8 @@ class RSSFragment : Fragment() {
     }
 
     /**
-     * TODO
-     *
+     * Iterates over RSS feed link array and feeds the links to RssFeedFectcher
+     * @see RssFeedFetcher
      */
 
     private fun reloadRSS() {
@@ -64,8 +82,9 @@ class RSSFragment : Fragment() {
     }
 
     /**
+     * Updates listView's RSS item list and notifies UI
      * TODO RssItems sorting
-     *
+     * @see RssItem.compareTo to Collections.sort override
      * @param newRssItemsList
      */
 
@@ -73,8 +92,8 @@ class RSSFragment : Fragment() {
         val runOnUiThread = activity?.runOnUiThread {
             if (newRssItemsList.isNotEmpty()) {
                 rssItemsAll.addAll(newRssItemsList)
-                //rssItemsAll.sort()
-                rssItemsAll.sortedByDescending { it.tmptmp }
+                rssItemsAll.sort()
+                //rssItemsAll.sortedByDescending { it.tmptmp }
                 adapter?.notifyDataSetChanged()
             }
         }

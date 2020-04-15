@@ -8,10 +8,10 @@ import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 /**
- * TODO
+ *  Opens HTTP connection to selected URL and feeds the stream to RSS Parser
  *
  * @constructor
- * TODO
+ *
  *
  * @param context
  */
@@ -37,6 +37,11 @@ class RssFeedFetcher(context: RSSFragment) : AsyncTask<URL, Void, List<RssItem>>
 
     }
 
+    /**
+     * Updates Rss items list if RSSFeedFetcher got the HTTP connection open and parser parsed the feed
+     * @see RSSFragment.updateRV
+     * @param result list of RSS items
+     */
 
     override fun onPostExecute(result: List<RssItem>?) {
         super.onPostExecute(result)
