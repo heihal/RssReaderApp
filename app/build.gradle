@@ -17,8 +17,9 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     dokka {
-        outputFormat = 'html'
-        outputDirectory = "$buildDir/javadoc"
+        //generate doc ./gradlew dokka
+        outputFormat = 'markdown'
+        outputDirectory = "$buildDir/KDoc./gradlew dokka"
     }
     buildTypes {
         release {

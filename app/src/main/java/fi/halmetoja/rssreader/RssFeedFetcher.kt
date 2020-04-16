@@ -8,12 +8,14 @@ import java.net.URL
 import javax.net.ssl.HttpsURLConnection
 
 /**
- *  Opens HTTP connection to selected URL and feeds the stream to RSS Parser
+ *  Opens [HttpsURLConnection] to selected [URL] and
  *
- * @constructor
+ *  feeds the [stream] to [RssParser]
+ *
+ * @constructor empty
  *
  *
- * @param context
+ * @param context [RSSFragment]
  */
 class RssFeedFetcher(context: RSSFragment) : AsyncTask<URL, Void, List<RssItem>>() {
     private val reference = WeakReference(context)
@@ -38,7 +40,12 @@ class RssFeedFetcher(context: RSSFragment) : AsyncTask<URL, Void, List<RssItem>>
     }
 
     /**
-     * Updates Rss items list if RSSFeedFetcher got the HTTP connection open and parser parsed the feed
+     * Updates [RSSFragment.rssItemsAll] if
+     *
+     * [RSSFeedFetcher] got the [HttpsURLConnection] open
+     *
+     * and [RssParser] parsed the [stream]
+     *
      * @see RSSFragment.updateRV
      * @param result list of RSS items
      */

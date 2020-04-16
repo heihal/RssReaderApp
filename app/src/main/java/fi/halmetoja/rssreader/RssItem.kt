@@ -7,7 +7,10 @@ import java.util.*
 
 /**
  * RSS feed item object model
- * Commented out parts of could be implemented later
+ *
+ * Commented out those parts that can
+ *
+ * be implemented later
  *
  */
 
@@ -30,7 +33,7 @@ class RssItem : Comparable<RssItem> {
     /**
      * Get pub date
      *
-     * @return Date object of Rss item
+     * @return [Date] of [RssItem]
      */
     private fun getPubTime(): Date? {
         return this.pubDateForArray
@@ -39,7 +42,7 @@ class RssItem : Comparable<RssItem> {
     /**
      * Set pub date
      *
-     * @param date Type of Date object
+     * @param date [Date]
      */
 
     private fun setPubDate(date: Date) {
@@ -47,10 +50,14 @@ class RssItem : Comparable<RssItem> {
     }
 
     /**
-     * TODO doesn't work like it suppose to (compDate is null most of the time)
+     * TODO doesn't work like it suppose to
+     *
+     * (compDate is null most of the time)
+     *
      * overrides compareTo in Comparable Interface
+     *
      * @param item Compares item's pub date to another item
-     * @return integer to use in sort function
+     * @return [Int] to use in [sort] function
      */
 
     override fun compareTo(item: RssItem): Int {
@@ -65,7 +72,7 @@ class RssItem : Comparable<RssItem> {
     }
 
     /**
-     * Formatting RSS pub date and setting it to Rss item's text field
+     * Formatting [pubDate] and setting it to [RssItem]'s text field
      *
      */
 
@@ -112,9 +119,7 @@ class RssItem : Comparable<RssItem> {
     }
 
     /**
-     *
-     *
-     * @return RSS item properties as a string
+     * @return [RssItem]'s properties as a [String]
      */
 
 

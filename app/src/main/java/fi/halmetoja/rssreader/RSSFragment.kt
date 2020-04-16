@@ -14,8 +14,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import java.net.URL
 
 /**
- * RSS Item Activity /Fragment
- *
+ * [RssItem] Activity /Fragment
  */
 
 class RSSFragment : Fragment() {
@@ -32,14 +31,18 @@ class RSSFragment : Fragment() {
     private var listView: RecyclerView? = null
 
     /**
-     * Inflates rss_flag_list layout with container
-     * Creates floating action button and adds listener to it (reloads RSS feed ann makes a toast about it)
-     * Sets listView as RecyclerView which contains Rss Item Row
+     * Inflates [R.layout.rss_frag_list] layout with container
+     *
+     * Creates [FloatingActionButton] [R.id.fab] and adds listener to it
+     *
+     * ([reloadRSS] and makes a [Toast] about it)
+     *
+     * Sets [listView] as RecyclerView which contains [R.layout.rss_frag_row]
      *
      * @param inflater
      * @param container
      * @param savedInstanceState
-     * @return Rss_frag_list view
+     * @return Rss_frag_list view [myView]
      */
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -57,8 +60,12 @@ class RSSFragment : Fragment() {
     }
 
     /**
-     * Sets layout manager and adapter to listView i.e. RecyclerView
+     * Sets [LinearLayoutManager] and adapter
+     *
+     * to [listView] i.e. [RecyclerView]
+     *
      * Reloads RSS feed
+     *
      * @param savedInstanceState
      */
     override fun onActivityCreated(savedInstanceState: Bundle?) {
@@ -71,7 +78,10 @@ class RSSFragment : Fragment() {
     }
 
     /**
-     * Iterates over RSS feed link array and feeds the links to RssFeedFectcher
+     * Iterates over [rssItemsAll] and
+     *
+     * feeds the links to [RssFeedFetcher]
+     *
      * @see RssFeedFetcher
      */
 
@@ -82,9 +92,11 @@ class RSSFragment : Fragment() {
     }
 
     /**
-     * Updates listView's RSS item list and notifies UI
+     * Updates [listView]'s [rssItemsAll] array and notifies UI
+     *
      * TODO RssItems sorting
-     * @see RssItem.compareTo to Collections.sort override
+     *
+     * @see RssItem.compareTo to [sort] override
      * @param newRssItemsList
      */
 

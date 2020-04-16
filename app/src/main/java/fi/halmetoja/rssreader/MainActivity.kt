@@ -13,31 +13,31 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 /**
  *  @author hemhal
- *  Course exercise RSS feed reader
- * TODO Dagger2 injection, Retrofit HTTP, ..
  *
+ *  Launches [MainActivity] with [R.id.fragment_root]
  *
+ *  Sets navigation [R.id.nav_view] and adds
  *
+ *  listener to it
  *
- *
- *
+ * TODO Dagger2 injection, Retrofit HTTP connection, ..
  */
-class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener{
+class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        supportFragmentManager.beginTransaction().replace(R.id.fragment_root,RSSFragment()).commit()
+        supportFragmentManager.beginTransaction().replace(R.id.fragment_root, RSSFragment())
+            .commit()
 
-       val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
+        val drawerLayout = findViewById<DrawerLayout>(R.id.drawer_layout)
         val navView = findViewById<NavigationView>(R.id.nav_view)
 
         val toggle = ActionBarDrawerToggle(
-            this, drawerLayout,  0, 0
+            this, drawerLayout, 0, 0
         )
         drawerLayout.addDrawerListener(toggle)
         toggle.syncState()
         navView.setNavigationItemSelectedListener(this)
-
 
 
     }
@@ -45,8 +45,8 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     /**
      *  Logic in nav menu
      *
-     * @param item nav menu item
-     * @return boolean
+     * @param item nav [MenuItem]
+     * @return [Boolean]
      */
 
     override fun onNavigationItemSelected(item: MenuItem): Boolean {

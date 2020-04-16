@@ -14,11 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 
 /**
- * View Adapter for RecyclerView
- * View Holder is a inner class
+ * View Adapter for [RecyclerView]
  *
- * @property rssItems List of RSS items
- * @property context RSSFragment activity
+ * [ViewHolder] is an inner class
+ *
+ * @property rssItems List of [RssItem]s
+ * @property context [RSSFragment] activity
  */
 class ViewAdapter(
     private val rssItems: MutableList<RssItem> = mutableListOf(),
@@ -28,7 +29,7 @@ class ViewAdapter(
 ) : RecyclerView.Adapter<ViewAdapter.ViewHolder>() {
 
     /**
-     * Adds RSS item to this view
+     * Adds [RssItem] to this view
      *
      * @param parent
      * @param viewType
@@ -41,7 +42,7 @@ class ViewAdapter(
     }
 
     /**
-     * uses ViewHolder's bind method
+     * Uses ViewHolder's [ViewHolder.bind] method
      * @see ViewHolder.bind
      *
      * @param holder ViewHolder
@@ -52,15 +53,19 @@ class ViewAdapter(
         holder.bind(rssItems[position])
 
     /**
-     *
      * @return RSS Items size
      */
     override fun getItemCount(): Int = rssItems.size
 
     /**
-     * View holder inner class
-     * Gets fields/layouts defined in XML and binds them with RSS item properties
-     * Sets listener for its RSS item (=row)
+     * Gets [R.layout.rss_frag_row]'s fields
+     *
+     * and binds them with [RssItem]'s properties
+     *
+     * Sets listener for [R.layout.rss_frag_row]
+     *
+     * Load images with [Glide] from url
+     *
      * @property view
      */
 
@@ -92,10 +97,9 @@ class ViewAdapter(
         }
 
         /**
-         * Opens RSS item's link in webview
+         * Opens [RssItem]'s link in [WebView]
          *
-         *
-         * @param item Clicked RSS item
+         * @param item Selected [RssItem]
          */
 
         private fun openWebView(item: RssItem) {

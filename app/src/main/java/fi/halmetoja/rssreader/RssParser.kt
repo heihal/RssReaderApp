@@ -6,6 +6,11 @@ import org.xmlpull.v1.XmlPullParserFactory
 import java.io.IOException
 import java.io.InputStream
 
+/**
+ * RSS Feed Parser
+ *
+ * Uses [XmlPullParser]
+ */
 
 class RssParser {
     private val rssItems = ArrayList<RssItem>()
