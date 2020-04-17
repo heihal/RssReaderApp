@@ -1,0 +1,60 @@
+<HTML>
+<HEAD>
+<meta charset="UTF-8">
+<title>RSSFragment - app</title>
+<link rel="stylesheet" href="../../../style.css">
+</HEAD>
+<BODY>
+<a href="../../index.html">app</a>&nbsp;/&nbsp;<a href="../index.html">fi.halmetoja.rssreader</a>&nbsp;/&nbsp;<a href="./index.html">RSSFragment</a><br/>
+<br/>
+<h1>RSSFragment</h1>
+<code><span class="keyword">class </span><span class="identifier">RSSFragment</span>&nbsp;<span class="symbol">:</span>&nbsp;<span class="identifier">Fragment</span></code>
+<p><a href="../-rss-item/index.html">RssItem</a> Activity /Fragment</p>
+<h3>Constructors</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="-init-.html">&lt;init&gt;</a></p>
+</td>
+<td>
+<code><span class="identifier">RSSFragment</span><span class="symbol">(</span><span class="symbol">)</span></code>
+<p><a href="../-rss-item/index.html">RssItem</a> Activity /Fragment</p>
+</td>
+</tr>
+</tbody>
+</table>
+<h3>Functions</h3>
+<table>
+<tbody>
+<tr>
+<td>
+<p><a href="on-activity-created.html">onActivityCreated</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onActivityCreated</span><span class="symbol">(</span><span class="identifier" id="fi.halmetoja.rssreader.RSSFragment$onActivityCreated(android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Sets <a href="#">LinearLayoutManager</a> and adapter</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="on-create-view.html">onCreateView</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">onCreateView</span><span class="symbol">(</span><span class="identifier" id="fi.halmetoja.rssreader.RSSFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/inflater">inflater</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/LayoutInflater.html"><span class="identifier">LayoutInflater</span></a><span class="symbol">, </span><span class="identifier" id="fi.halmetoja.rssreader.RSSFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/container">container</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/view/ViewGroup.html"><span class="identifier">ViewGroup</span></a><span class="symbol">?</span><span class="symbol">, </span><span class="identifier" id="fi.halmetoja.rssreader.RSSFragment$onCreateView(android.view.LayoutInflater, android.view.ViewGroup, android.os.Bundle)/savedInstanceState">savedInstanceState</span><span class="symbol">:</span>&nbsp;<a href="https://developer.android.com/reference/android/os/Bundle.html"><span class="identifier">Bundle</span></a><span class="symbol">?</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://developer.android.com/reference/android/view/View.html"><span class="identifier">View</span></a><span class="symbol">?</span></code>
+<p>Inflates <a href="#">R.layout.rss_frag_list</a> layout with container</p>
+</td>
+</tr>
+<tr>
+<td>
+<p><a href="update-r-v.html">updateRV</a></p>
+</td>
+<td>
+<code><span class="keyword">fun </span><span class="identifier">updateRV</span><span class="symbol">(</span><span class="identifier" id="fi.halmetoja.rssreader.RSSFragment$updateRV(kotlin.collections.List((fi.halmetoja.rssreader.RssItem)))/newRssItemsList">newRssItemsList</span><span class="symbol">:</span>&nbsp;<a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.collections/-list/index.html"><span class="identifier">List</span></a><span class="symbol">&lt;</span><a href="../-rss-item/index.html"><span class="identifier">RssItem</span></a><span class="symbol">&gt;</span><span class="symbol">)</span><span class="symbol">: </span><a href="https://kotlinlang.org/api/latest/jvm/stdlib/kotlin/-unit/index.html"><span class="identifier">Unit</span></a></code>
+<p>Updates <a href="#">listView</a>'s <a href="#">rssItemsAll</a> array and notifies UI</p>
+</td>
+</tr>
+</tbody>
+</table>
+</BODY>
+</HTML>
