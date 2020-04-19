@@ -11,4 +11,12 @@
     <string name="other_settings">Other Settings</string>
     <string name="about">About</string>
     <string name="quit">Quit</string>
+    <string name="readme"><a href="https://gitlab.utu.fi/hemhal/RssReaderApp/-/blob/master/README.md">CLICK ME TO READ README</a></string>
+    <string name="links">
+        <b>Go to the source!</b>\n\n
+        <a href="https://feeds.yle.fi/uutiset/v1/recent.rss?publisherIds=YLE_UUTISET">YLE UUTISET</a>\n\n
+        <a href="https://www.hs.fi/rss/tuoreimmat.xml">HS UUTISET</a>\n\n
+        <a href="https://www.iltalehti.fi/rss/rss.xml">IS UUTISET</a>\n\n
+    </string>
+
 </resources>

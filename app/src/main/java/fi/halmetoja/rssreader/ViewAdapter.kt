@@ -1,6 +1,8 @@
 package fi.halmetoja.rssreader
 
 
+import android.graphics.Color
+import android.graphics.Color.GRAY
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +11,8 @@ import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.view.ContextThemeWrapper
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -84,6 +88,8 @@ class ViewAdapter(
             pubDate?.text = item.tmpDate
             val imgLink = item.enclosure
 
+
+
             context?.let {
                 Glide.with(it)
                     .load(imgLink)
@@ -91,6 +97,7 @@ class ViewAdapter(
             }
 
             view.setOnClickListener {
+                title?.setTextColor(GRAY)
                 openWebView(item)
             }
 
@@ -112,15 +119,19 @@ class ViewAdapter(
             articleView.webChromeClient = WebChromeClient()
             articleView.loadUrl(item.link)
 
-            val alertDialog = androidx.appcompat.app.AlertDialog.Builder(itemView.context).create()
-            alertDialog.setTitle(item.title)
-            alertDialog.setView(articleView)
-            alertDialog.setButton(
-                androidx.appcompat.app.AlertDialog.BUTTON_NEUTRAL, "CLOSE"
-            ) { dialog, _ -> dialog.dismiss() }
-            alertDialog.show()
 
-            (alertDialog.findViewById<View>(android.R.id.message) as TextView).movementMethod =
+
+            val alertDialog = AlertDialog.Builder(ContextThemeWrapper(articleView.context, R.style.AlertDialogCustom)).create()
+            with(alertDialog){
+                setTitle(item.channel)
+                setView(articleView)
+                setButton(
+                    AlertDialog.BUTTON_NEUTRAL, "CLOSE"
+                ) { dialog, _ -> dialog.dismiss() }
+                show()
+            }
+
+           (alertDialog.findViewById<View>(android.R.id.message) as TextView).movementMethod =
                 LinkMovementMethod.getInstance()
         }
 

@@ -2,14 +2,19 @@ package fi.halmetoja.rssreader
 
 
 import android.os.Bundle
+import android.text.method.LinkMovementMethod
 import android.view.MenuItem
+import android.view.View
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.ActionBarDrawerToggle
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
 import com.google.android.material.navigation.NavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+
 
 /**
  *  @author hemhal
@@ -52,13 +57,13 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onNavigationItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.nav_links -> {
-                Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
+                aboutDialog("links")
             }
             R.id.nav_categories -> {
                 Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
             }
             R.id.nav_about -> {
-                Toast.makeText(applicationContext, "Not implemented yet", Toast.LENGTH_SHORT).show()
+                aboutDialog("readme")
             }
             R.id.nav_quit -> {
                 finish()
@@ -67,6 +72,31 @@ class MainActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         drawer_layout.closeDrawer(GravityCompat.START)
         return true
+    }
+
+    /**
+     * Opens dialog with hyperlinks
+     *
+     * @param item Choose which dialog you want to open
+     */
+    private fun aboutDialog(item: String) {
+        val builder =
+            AlertDialog.Builder(this@MainActivity)
+        if (item == "readme") {
+            builder.setMessage(R.string.readme)
+        } else {
+            builder.setMessage(R.string.links)
+        }
+        val alert = with(builder) {
+            setCancelable(false)
+            setPositiveButton(
+                "Cancel"
+            ) { dialog, which -> }
+            create()
+            show()
+        }
+        (alert.findViewById<View>(android.R.id.message) as TextView?)!!.movementMethod =
+            LinkMovementMethod.getInstance()
     }
 
 }
