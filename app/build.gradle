@@ -18,8 +18,8 @@ android {
     }
     dokka {
         //generate doc ./gradlew dokka
-        outputFormat = 'html'
-        outputDirectory = "$buildDir/public"
+        outputFormat = 'markdown'
+        outputDirectory = "$buildDir/md"
     }
     buildTypes {
         release {
